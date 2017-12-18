@@ -1,4 +1,4 @@
-package netty.echo;
+package io.netty.echo;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;

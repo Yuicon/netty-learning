@@ -1,2 +1,2 @@
-# netty-learning
-netty-learning
+# io.netty-learning
+io.netty-learning
