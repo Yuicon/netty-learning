@@ -12,6 +12,8 @@ import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.msgpack.MsgpackDecoder;
+import io.netty.handler.msgpack.MsgpackEncoder;
 
 /**
  * @author Yuicon
@@ -31,8 +33,8 @@ public class EchoServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new FixedLengthFrameDecoder(20));
-                            socketChannel.pipeline().addLast(new StringDecoder());
+                            socketChannel.pipeline().addLast("msgpack decoder", new MsgpackDecoder());
+                            socketChannel.pipeline().addLast("msgpack encoder", new MsgpackEncoder());
                             socketChannel.pipeline().addLast(new EchoServerHandler());
                         }
                     });

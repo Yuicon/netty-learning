@@ -28,13 +28,15 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         for (int i = 0; i < 10; i++) {
-            ctx.writeAndFlush(Unpooled.copiedBuffer(ECHO_REQ.getBytes()));
+            ctx.write(ECHO_REQ);
         }
+        ctx.flush();
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("This is " + ++counter + "times receive server : [" + msg +  "]");
+        ctx.write(msg);
     }
 
     @Override

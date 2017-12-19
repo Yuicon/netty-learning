@@ -12,6 +12,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.msgpack.MsgpackDecoder;
+import io.netty.handler.msgpack.MsgpackEncoder;
 
 /**
  * @author Yuicon
@@ -28,9 +30,8 @@ public class EchoClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
-                            socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));
-                            socketChannel.pipeline().addLast(new StringDecoder());
+                            socketChannel.pipeline().addLast("msgpack decoder", new MsgpackDecoder());
+                            socketChannel.pipeline().addLast("msgpack encoder", new MsgpackEncoder());
                             socketChannel.pipeline().addLast(new EchoClientHandler());
                         }
                     });

@@ -10,8 +10,6 @@ import io.netty.channel.ChannelHandlerContext;
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelHandlerAdapter {
 
-    int counter = 0;
-
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
@@ -23,4 +21,5 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("Receive client : [" + msg + " ] ");
     }
+
 }
