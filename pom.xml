@@ -31,6 +31,16 @@
             <version>0.6.12</version>
         </dependency>
         <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
+            <version>1.4.10.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-serial</artifactId>
+            <version>1.4.10.Final</version>
+        </dependency>
+        <dependency>
             <groupId>protobuf</groupId>
             <artifactId>protobuf</artifactId>
             <version>3.5.1</version>
